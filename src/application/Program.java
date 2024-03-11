@@ -7,6 +7,7 @@ import entities.Product;
 import entities.enums.OrderStatus;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
@@ -32,9 +33,9 @@ public class Program {
         String status = sc.next();
         System.out.print("How many items to this order? ");
         int n = sc.nextInt();
-        Order order = new Order(LocalDate.now(), OrderStatus.valueOf(status));
+        Order order = new Order(LocalDateTime.now(), OrderStatus.valueOf(status));
         for (int i = 1; i <= n; i++){
-            System.out.println("Enter #" + i + "item data:");
+            System.out.println("Enter #" + i + " item data:");
             System.out.print("Product name: ");
             String nameProduct = sc.next();
             System.out.print("Product price: ");
@@ -45,7 +46,15 @@ public class Program {
             order.addItem(orderItem);
         }
 
+        System.out.println();
+
+        System.out.println("ORDER SUMMARY:");
+        System.out.println("Order moment: " + order.getMoment().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
+        System.out.println("Order status: " + order.getStatus());
+        System.out.println("Client: " + client);
+        System.out.println("Order items:");
         System.out.println(order);
+        System.out.printf("Total price: $%.2f", order.total());
 
         sc.close();
 

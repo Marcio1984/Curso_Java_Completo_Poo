@@ -40,19 +40,8 @@ public class OrderItem {
         this.product = product;
     }
 
-    @Override
-    public String toString() {
-        return "OrderItem{" +
-                "quantity=" + quantity +
-                ", price=" + price +
-                ", product=" + product +
-                '}';
-    }
-
-    public Double subTotal(int quantity, double price){
-        double sum = 0.f;
-        sum = quantity * price;
-        return sum;
+    public double subTotal(){;
+        return price * quantity;
     }
 
 }
